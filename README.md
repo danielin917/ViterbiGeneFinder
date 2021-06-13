@@ -7,4 +7,4 @@ Run:
 
 Performs Viterbi Training to find the most probable state path based on the passed in emission
 probability matrix for each state. By looking for areas in the sequence where we emit a disproporitionate
-number of Cs and Gs to find "CpG islands" we can predict the start regions of genes.
+number of Cs and Gs to find "CpG islands" we can predict the start regions of genes in a DNA sequence.
