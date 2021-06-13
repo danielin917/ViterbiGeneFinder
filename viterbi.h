@@ -25,7 +25,8 @@ class Viterbi {
   // in each state.
   typedef std::vector<std::vector<double>> EmissionMatrix;
 
-  // Constructor. Builds the  Viterbi class using the provided transin
+  // Constructor. Builds the  Viterbi class using the provided
+  // 'transition_matrix' and 'emission_matrix'.
   Viterbi(const TransitionMatrix& transition_matrix,
           const EmissionMatrix& emission_matrix);
 

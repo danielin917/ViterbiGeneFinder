@@ -40,6 +40,7 @@ class DNASequence {
   // Prints the DNA sequence out in columns.
   void PrintWithColumns() const;
 
+  // Substitutes all unknown characters in 'line' with a T.
   static std::string MakeValidDNASequence(const std::string& line);
 
   // Returns true if 'sequence' is a a valid DNA sequence.

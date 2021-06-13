@@ -14,25 +14,13 @@
 using namespace viterbi;
 using namespace std;
 
+// Extracts sequence from .FASTA file into different 'dna_sequences'.
 bool ExtractSequencesFromFile(const string& filename,
                               vector<DNASequence> *dna_sequences);
 
+// Same as above except DNA sequence described as raw vector of char values.
 bool ExtractNumberSequencesFromFile(const string& filename,
                                     vector<char> *const dna_sequences);
-
-// Below used for loaded Dice testing./////////////
-Viterbi::TransitionMatrix dice_transition_matrix =
-  /*            Beg                                   1           2    */
-  /* Beg */ { { -1 * numeric_limits<double>::max(), log(.5),  log(0.5) },
-  /*  1  */   { -1 * numeric_limits<double>::max(), log(.95), log(.05) },
-  /*  2  */   { -1 * numeric_limits<double>::max(), log(.1),   log(.9) } };
-
-Viterbi::EmissionMatrix dice_emission_matrix =
-  /*              1                     2             3               4              5              6  */
-  /* Beg */ { {   0,                    0,            0,              0,             0,             0,  },
-  /*  1  */   { log(.166666), log(.166666), log(.166666), log(.16666666), log(.1666666), log(.1666666)  },
-  /*  2  */   { log(.1),      log(.1),      log(.1),      log(.1),              log(.1),       log(.5)  } };
-////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -66,19 +54,9 @@ int main(int argc, char *argv[]) {
   }
   vector<DNASequence>().swap(dna_sequences);
 
-  //ExtractNumberSequencesFromFile(test_filename, &emission_sequence);
-
   Viterbi v(transition_matrix, emission_matrix);
   deque<int> viterbi_path =
     v.ViterbiTrain(emission_sequence, 10 /* num_iterations */);
-
-// Print state path.
-/*
-  for (int ii = 0; ii < viterbi_path.size(); ++ii) {
-    cout << viterbi_path[ii] << " ";
-  }
-  cout << endl;
-*/
   return 0;
 }
 
